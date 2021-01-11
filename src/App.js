@@ -1,9 +1,12 @@
 import "./App.css";
 import Form from "./componets/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TeamMember from "./componets/TeamMember";
 
 function App() {
   const [team, setTeam] = useState([]);
+  const [memberToEdit, setMemberToEdit] = useState(null);
+  console.log(memberToEdit);
 
   const initialFormValues = {
     name: "",
@@ -11,6 +14,11 @@ function App() {
     role: "",
   };
   const [formValues, setFormValues] = useState(initialFormValues);
+  useEffect(() => {
+    if (memberToEdit) {
+      setFormValues(memberToEdit);
+    }
+  }, [memberToEdit]);
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({ ...formValues, [inputName]: inputValue });
@@ -40,12 +48,19 @@ function App() {
   return (
     <div>
       {team.map((teamMember) => {
-        return <p key={teamMember.id}>{JSON.stringify(teamMember)}</p>;
+        return (
+          <TeamMember
+            key={teamMember.id}
+            teamMember={teamMember}
+            setMemberToEdit={setMemberToEdit}
+          />
+        );
       })}
       <Form
         updateForm={updateForm}
         submitForm={submitForm}
         formValues={formValues}
+        memberToEdit={memberToEdit}
       />
     </div>
   );

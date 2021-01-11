@@ -1,5 +1,5 @@
 export default function Form(proops) {
-  const { updateForm, submitForm, formValues } = proops;
+  const { updateForm, submitForm, formValues, memberToEdit } = proops;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -41,9 +41,9 @@ export default function Form(proops) {
               Role:
               <select name="role" value={formValues.role} onChange={onChange}>
                 <option value="">---Select Role---</option>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="tl">TL</option>
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+                <option value="TL">TL</option>
               </select>
             </label>
           </div>
