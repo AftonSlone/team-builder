@@ -1,5 +1,11 @@
 export default function Form(proops) {
-  const { updateForm, submitForm, formValues, memberToEdit } = proops;
+  const {
+    updateForm,
+    submitForm,
+    formValues,
+    memberToEdit,
+    editMember,
+  } = proops;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -9,6 +15,9 @@ export default function Form(proops) {
   const onSubmit = (e) => {
     console.log(e);
     e.preventDefault();
+    if (memberToEdit) {
+      editMember();
+    }
     submitForm();
   };
 

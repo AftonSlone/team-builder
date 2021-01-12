@@ -24,6 +24,20 @@ function App() {
     setFormValues({ ...formValues, [inputName]: inputValue });
   };
 
+  const editMember = () => {
+    setTeam(
+      team.map((teamMate) => {
+        if (teamMate.id === memberToEdit.id) {
+          console.log("found");
+          return (teamMate = formValues);
+        } else {
+          return teamMate;
+        }
+      })
+    );
+    setMemberToEdit(null);
+  };
+
   const submitForm = () => {
     let uniqueName = true;
     const newTeamMember = {
@@ -61,6 +75,7 @@ function App() {
         submitForm={submitForm}
         formValues={formValues}
         memberToEdit={memberToEdit}
+        editMember={editMember}
       />
     </div>
   );
